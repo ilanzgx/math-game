@@ -8,8 +8,8 @@ function createWindow(){
       nodeIntegration: true
     }
   })
-
-  win.loadFile('index.html')
+  win.setMenuBarVisibility(false);
+  win.loadFile('index.html');
 }
 
 app.whenReady().then(createWindow)
