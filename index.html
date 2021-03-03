@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  
+  <link rel="stylesheet" href="./css/app.css">
+  <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+</head>
+<body id="bg">
+  <audio id="music"  preload="auto"  autoplay loop></audio>
+  <div class="container-fluid" style="margin-bottom: 50px;">
+    <h1 class="text-center">Math game!</h1>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row game-menu">
+      <div class="col-md-4 offset-md-4">
+        <button id="startGame" class="btn btn-primary mt-5" style="display: block;">start game</button>
+        <button id="aboutGame" class="btn btn-info" style="display: block;">about</button>
+        <button id="exitGame" class="btn btn-danger" style="display: block;">exit</button>
+      </div>
+    </div>
+
+    <div class="row game-difficult d-none">
+      <div class="col-md-4 offset-md-4">
+        <p>Select a difficult</p>
+        <button id="easyDiff" class="btn btn-success mt-5" style="display: block;">easy</button>
+        <button id="normalDiff" class="btn btn-warning" style="display: block;">normal</button>
+        <button id="hardDiff" class="btn btn-danger" style="display: block;">hard</button>
+      </div>
+    </div>
+
+    <div class="row game d-none">
+      <div class="col-md-4 offset-md-4">
+        Game
+      </div>
+    </div>
+  </div>
+
+  <div class="text-right game-back d-none">
+    <small><a class="btn btn-secondary m-2" id="gameBack">Back</a></small>
+  </div>
+
+  <script src="./css/jquery-3.5.1.min.js"></script>
+  <script src="./css/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="./src/game.js"></script>
+</body>
+</html>

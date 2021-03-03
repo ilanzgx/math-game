@@ -1,0 +1,26 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+
+@font-face{
+    font-family: 'Press Start 2P';
+    src: url('./fonts/PressStart2P-Regular.ttf');
+}
+
+body{
+    color: white !important;
+    font-family: 'Press Start 2P' !important;
+}
+
+h1{
+    font-size: 2em !important;
+}
+
+button{
+    margin: 10px !important;
+}
+
+#bg{
+    background-color: rgb(39, 39, 39);
+}
