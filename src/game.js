@@ -163,7 +163,7 @@ $(() => {
     
     $('#hardDiff').on('click', () => {
         difficult = 3;
-        timeLeft = 80;
+        timeLeft = 35;
         startGame();
     });
 
