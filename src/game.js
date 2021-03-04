@@ -45,22 +45,14 @@ $(() => {
             if(!playing){
                 if(!playingMusic){
                     $('#music').attr('src', './src/music_boss.mp4');
+                    timingTimeLeft = setInterval(counterTimeLeft, 1000);
                 }
                 $('.game-difficult').addClass('d-none');
                 $('.game').removeClass('d-none');
                 $('.game-back').removeClass('d-none');
-                timingTimeLeft = setInterval(counterTimeLeft, 1000);
 
                 if(timeLeft <= 0){
-                    $('#music').attr('src', './src/music_gameover.mp4');
-        
-                    $('.game-over').removeClass('d-none');
-                    $('.game').addClass('d-none');
-                    $('#scoreResult').text(score);
-        
-                    score = 0;
-        
-                    clearInterval(timingTimeLeft);
+                    gameOver();
                     return 1;
                 }
 
@@ -82,6 +74,19 @@ $(() => {
             playing = 1;
 
         }
+    }
+
+    function gameOver(){
+        $('#music').attr('src', './src/music_gameover.mp4');
+        
+        $('.game-over').removeClass('d-none');
+        $('.game').addClass('d-none');
+        $('#scoreResult').text(score);
+        
+        score = 0;
+        playing = 1;
+        
+        clearInterval(timingTimeLeft);
     }
 
     function exitGame(){
@@ -115,7 +120,6 @@ $(() => {
         num2 = 0;
         result = 0;
         score += 20;
-        clearInterval(timingTimeLeft);
         startGame();
     }
 
@@ -124,11 +128,10 @@ $(() => {
         num1 = 0;
         num2 = 0;
         result = 0;
-        timeLeft -= 5;
+        timeLeft -= 5*difficult;
         if(score > 0){
-            score -= 5;
+            score -= 4+difficult;
         }
-        clearInterval(timingTimeLeft);
         startGame();
     }
 
@@ -136,15 +139,7 @@ $(() => {
         timeLeft--;
         startGame();
         if(timeLeft <= 0){
-            $('#music').attr('src', './src/music_gameover.mp4');
-
-            $('.game-over').removeClass('d-none');
-            $('.game').addClass('d-none');
-            $('#scoreResult').text(score);
-
-            score = 0;
-
-            clearInterval(timingTimeLeft);
+            gameOver();
         }
     }
 
