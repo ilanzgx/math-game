@@ -1,4 +1,6 @@
 $(() => {
+    const appVersion = 'v1.5.0';
+    const operators = ['+','-','*','/'];
     let difficult = 0;
     let timeLeft = 0;
     let timingTimeLeft;
@@ -10,11 +12,14 @@ $(() => {
 
     let num1 = 0;
     let num2 = 0;
+    let operator = 0;
     let result = 0;
 
     // Random 8bits music
     const music = Math.floor((Math.random() * 3) + 1);
     $('#music').attr('src', `./src/assets/sounds/music_${music}.mp4`);
+
+    $('#gameVersion').text(appVersion);
 
     /* Menu buttons */
     $('#startGame').on('click', () => {
@@ -23,7 +28,7 @@ $(() => {
 
     $('#aboutGame').on('click', () => {
         $('.game-menu').addClass('d-none');
-        $('#game-about').removeClass('d-none');
+        $('.game-about').removeClass('d-none');
         $('.game-back').removeClass('d-none');
     });
 
@@ -75,8 +80,24 @@ $(() => {
                 playingMusic = 1;
                 num1 = Math.floor((Math.random() * 9) + 1);
                 num2 = Math.floor((Math.random() * 9) + 1);
-                result = num1*num2;
-                $('#mathOperation').text(`${num1} * ${num2}`);
+                operator = operators[Math.floor((Math.random() * 4))];
+                
+                switch(operator){
+                    case '+':
+                        result = num1+num2;
+                        break;
+                    case '-':
+                        result = num1-num2;
+                        break;
+                    case '*':
+                        result = num1*num2;
+                        break;
+                    case '/':
+                        result = num1/num2;
+                        break;
+                }
+
+                $('#mathOperation').text(`${num1} ${operator} ${num2}`);
 
                 $(`.option-1`).text(result + 4);
                 $(`.option-2`).text(result + 6);
@@ -121,7 +142,7 @@ $(() => {
         $('.game-back').addClass('d-none');
         $('.game').addClass('d-none');
         $('.game-over').addClass('d-none');
-        $('#game-about').addClass('d-none');
+        $('.game-about').addClass('d-none');
 
         if(playing){
             $('#music').attr('src', `./src/assets/sounds/music_${music}.mp4`);
@@ -134,6 +155,7 @@ $(() => {
         timeLeft = 0;
         playingMusic = 0;
         hitHighestScore = 0;
+        score = 0;
         num1 = 0;
         num2 = 0;
         result = 0;
@@ -146,8 +168,8 @@ $(() => {
         num1 = 0;
         num2 = 0;
         result = 0;
-        score += 20;
-        timeLeft += 2;
+        score += Math.floor((Math.random() * 10) + 10);
+        timeLeft += 5-difficult;
         startGame();
     }
 

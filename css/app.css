@@ -31,6 +31,14 @@ button{
     padding: 10px 5px;
 }
 
+.game-version{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: auto auto;
+    padding: 10px 5px;
+}
+
 #bg{
     background-color: rgb(39, 39, 39);
 }
