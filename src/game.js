@@ -3,6 +3,8 @@ $(() => {
     let timeLeft = 0;
     let timingTimeLeft;
     let score = 0;
+    let highestScore = 0;
+    let hitHighestScore = 0;
     let playing = 0;
     let playingMusic = 0;
 
@@ -12,11 +14,17 @@ $(() => {
 
     // Random 8bits music
     const music = Math.floor((Math.random() * 3) + 1);
-    $('#music').attr('src', `./src/music_${music}.mp4`);
+    $('#music').attr('src', `./src/assets/sounds/music_${music}.mp4`);
 
     /* Menu buttons */
     $('#startGame').on('click', () => {
         startGame();
+    });
+
+    $('#aboutGame').on('click', () => {
+        $('.game-menu').addClass('d-none');
+        $('#game-about').removeClass('d-none');
+        $('.game-back').removeClass('d-none');
     });
 
     $('#exitGame').on('click', () => {
@@ -28,6 +36,8 @@ $(() => {
     });
 
     var vid = document.getElementById("music");
+    vid.volume = 0.1; // volume 10%
+    var vid2  = document.getElementById("soundEffects");
     vid.volume = 0.1; // volume 10%
 
     function startGame(){
@@ -44,16 +54,22 @@ $(() => {
             // start the game
             if(!playing){
                 if(!playingMusic){
-                    $('#music').attr('src', './src/music_boss.mp4');
+                    $('#music').attr('src', './src/assets/sounds/music_boss.mp4');
+                    $('#highestScore').text(highestScore);
                     timingTimeLeft = setInterval(counterTimeLeft, 1000);
                 }
                 $('.game-difficult').addClass('d-none');
                 $('.game').removeClass('d-none');
                 $('.game-back').removeClass('d-none');
-
+                
                 if(timeLeft <= 0){
                     gameOver();
                     return 1;
+                }
+
+                if(score >= highestScore && !hitHighestScore && highestScore != 0){
+                    $('#soundEffects').attr('src', './src/assets/sounds/score.wav');
+                    hitHighestScore = 1;
                 }
 
                 playingMusic = 1;
@@ -77,13 +93,19 @@ $(() => {
     }
 
     function gameOver(){
-        $('#music').attr('src', './src/music_gameover.mp4');
+        $('#music').attr('src', './src/assets/sounds/music_gameover.mp4');
+        $('body').css('background', 'url(./src/assets/imgs/background-gameover.jpg)');
+        $('body').css('background-size', 'cover');
         
         $('.game-over').removeClass('d-none');
         $('.game').addClass('d-none');
         $('#scoreResult').text(score);
         
+        if(score > highestScore){
+            highestScore = score;
+        }
         score = 0;
+        hitHighestScore = 0;
         playing = 1;
         
         clearInterval(timingTimeLeft);
@@ -99,15 +121,19 @@ $(() => {
         $('.game-back').addClass('d-none');
         $('.game').addClass('d-none');
         $('.game-over').addClass('d-none');
+        $('#game-about').addClass('d-none');
 
         if(playing){
-            $('#music').attr('src', `./src/music_${music}.mp4`);
+            $('#music').attr('src', `./src/assets/sounds/music_${music}.mp4`);
+            $('body').css('background', 'url(./src/assets/imgs/background.jpg)');
+            $('body').css('background-size', 'cover');
         }
         
         playing = 0;
         difficult = 0;
         timeLeft = 0;
         playingMusic = 0;
+        hitHighestScore = 0;
         num1 = 0;
         num2 = 0;
         result = 0;
@@ -115,15 +141,18 @@ $(() => {
     }
 
     function rightQuestion(){
+        $('#soundEffects').attr('src', './src/assets/sounds/right.wav');
         playing = 0;
         num1 = 0;
         num2 = 0;
         result = 0;
         score += 20;
+        timeLeft += 2;
         startGame();
     }
 
     function wrongQuestion(){
+        $('#soundEffects').attr('src', './src/assets/sounds/wrong.wav');
         playing = 0;
         num1 = 0;
         num2 = 0;
@@ -164,29 +193,23 @@ $(() => {
 
     /* Options */
     $(`.option-1`).on('click', (element) => {
-        console.log(`${$(element.target).text()} is ${result} ??`)
-        if($(element.target).text() == result){
+        if($(element.target).text() == result)
             rightQuestion();
-        } else {
+        else
             wrongQuestion();
-        }
     });
 
     $(`.option-2`).on('click', (element) => {
-        console.log(`${$(element.target).text()} is ${result} ??`)
-        if($(element.target).text() == result){
+        if($(element.target).text() == result)
             rightQuestion();
-        } else {
+        else
             wrongQuestion();
-        }
     });
 
     $(`.option-3`).on('click', (element) => {
-        console.log(`${$(element.target).text()} is ${result} ??`)
-        if($(element.target).text() == result){
+        if($(element.target).text() == result)
             rightQuestion();
-        } else {
+        else
             wrongQuestion();
-        }
     });
 })

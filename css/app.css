@@ -11,6 +11,8 @@ html{
 body{
     color: white !important;
     font-family: 'Press Start 2P' !important;
+    background: url('./../src/assets/imgs/background.jpg');
+    background-size: cover;
 }
 
 h1{

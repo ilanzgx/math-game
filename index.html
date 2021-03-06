@@ -9,30 +9,38 @@
   <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
 </head>
 <body id="bg">
-  <audio id="music"  preload="auto"  autoplay loop></audio>
+  <audio id="music" preload="auto"  autoplay loop></audio>
+  <audio id="soundEffects" preload="auto" autoplay></audio>
+
   <div class="container-fluid" style="margin-bottom: 50px;">
     <h1 class="text-center">Math game!</h1>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid ">
     <div class="row game-menu">
       <div class="col-md-4 offset-md-4">
-        <button id="startGame" class="btn btn-primary mt-5" style="display: block;">start game</button>
-        <button id="aboutGame" class="btn btn-info" style="display: block;">about</button>
-        <button id="exitGame" class="btn btn-danger" style="display: block;">exit</button>
+        <button id="startGame" class="btn btn-primary btn-lg mt-5 w-100" >start game</button>
+        <button id="aboutGame" class="btn btn-info w-100">about</button>
+        <button id="exitGame" class="btn btn-danger w-100">exit</button>
+      </div>
+    </div>
+
+    <div class="row game-about d-none">
+      <div class="col">
+        <p>created by github:ilanzgx</p>
       </div>
     </div>
 
     <div class="row game-difficult d-none">
       <div class="col-md-4 offset-md-4">
-        <p>Select a difficult</p>
-        <button id="easyDiff" class="btn btn-success mt-5" style="display: block;">easy</button>
-        <button id="normalDiff" class="btn btn-warning" style="display: block;">normal</button>
-        <button id="hardDiff" class="btn btn-danger" style="display: block;">hard</button>
+        <p class="text-center">Select a difficult</p>
+        <button id="easyDiff" class="btn btn-success w-100 mt-5" style="display: block;">easy</button>
+        <button id="normalDiff" class="btn btn-warning w-100" style="display: block;">normal</button>
+        <button id="hardDiff" class="btn btn-danger w-100" style="display: block;">hard</button>
       </div>
     </div>
 
-    <div class="row game text-center d-none">
+    <div class="row game text-center mt-5 d-none">
       <div class="col-sm-6">
         <p id="mathOperation">NaN * NaN</p>
         <button class="btn btn-primary option-1">NaN</button>
@@ -43,6 +51,7 @@
       <div class="col-sm">
         <p>Score: <span class="text-warning" id="scoreCounter">NaN</span></p>
         <p>Time left: <span class="text-warning" id="timeLeft">NaN</span></p>
+        <p>Highest score: <span class="text-warning mt-5" id="highestScore">NaN</span></p>
       </div>
     </div>
 
